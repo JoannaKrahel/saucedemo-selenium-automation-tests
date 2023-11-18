@@ -2,6 +2,7 @@ package specs;
 
 import core.ConfigReader;
 import core.NavigationUtils;
+import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.LoginPage;
@@ -10,6 +11,7 @@ import pages.ProductsPage;
 public class LogOutTest extends BaseTest {
 
     @Test
+    @Description("Verify successful logout")
     public void testLogout() {
         LoginPage loginPage = NavigationUtils.navigateToLoginPage(driver);
         loginPage.enterUsername("standard_user");

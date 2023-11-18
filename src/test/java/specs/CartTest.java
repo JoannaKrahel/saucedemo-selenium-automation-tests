@@ -1,6 +1,7 @@
 package specs;
 
 import core.NavigationUtils;
+import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -19,15 +20,16 @@ public class CartTest extends BaseTest {
     }
 
     @Test(dataProvider = "cartOperations")
-    public void testAddItemsFromCart(int quantity) throws InterruptedException {
+    @Description("Add a specific quantity of items to the cart and verify the cart's content")
+    public void testAddItemsFromCart(int quantity) {
         ProductsPage productsPage = NavigationUtils.navigateToProductsPage(driver);
         productsPage.addItemsToCart(quantity);
         CartPage cartPage = NavigationUtils.navigateToCartPage(driver);
         Assert.assertEquals(cartPage.getItemsNumberInCart(), quantity, "Invalid number of items in the cart after adding!");
-
     }
 
     @Test
+    @Description("Remove an item from the cart and verify the cart is empty")
     public void removeItemFromCart() {
         ProductsPage productsPage = NavigationUtils.navigateToProductsPage(driver);
         productsPage.addItemToCart();

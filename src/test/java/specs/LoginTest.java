@@ -3,6 +3,7 @@ package specs;
 import core.ConfigReader;
 import core.NavigationUtils;
 import data.LoginData;
+import io.qameta.allure.Description;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -12,6 +13,7 @@ import pages.LoginPage;
 public class LoginTest extends BaseTest {
 
     @Test
+    @Description("Verify successful login to saucedemo website")
     public void loginToSaucedemo() {
         LoginPage loginPage = NavigationUtils.navigateToLoginPage(driver);
 
@@ -22,7 +24,9 @@ public class LoginTest extends BaseTest {
         Assert.assertEquals(productsLabel.getText(), "Products");
     }
 
+
     @Test(dataProvider = "invalidLoginData", dataProviderClass = LoginData.class)
+    @Description("Attempt login with invalid credentials and validate error message and URL")
     public void testInvalidLogin(String username, String password, String error) {
         LoginPage loginPage = NavigationUtils.navigateToLoginPage(driver);
         loginPage.enterUsername(username);
